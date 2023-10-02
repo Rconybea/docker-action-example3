@@ -1,0 +1,31 @@
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/rconybea/docker-cpp-builder:v1
+      ## no credentials required, image is public
+      # credentials:
+      #   username: ${{ github.actor }}
+      #   password: ${{ secrets.github_token }}
+      #
+      # env: <map with environment variables to set>
+      # ports: [8080, 8081]
+      # options: <docker create options>
+
+    steps:
+    - name: compile
+      run:
+        # make,g++ will run in container..
+        make -C ${{github.workspace}}
+
+    - name: check compiler version
+      run:
+        # should be 12.2 or later
+        g++ --version
+
+    - name: hello
+      run:
+        # since we did an in-source build
+        ${{github.workspace}/hello Roland
