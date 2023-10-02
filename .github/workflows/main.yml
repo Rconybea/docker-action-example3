@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/rconybea/docker-cpp-builder:v1
+      image: ghcr.io/rconybea/docker-cpp-builder:v2
       ## no credentials required, image is public
       # credentials:
       #   username: ${{ github.actor }}
@@ -15,6 +15,10 @@ jobs:
       # options: <docker create options>
 
     steps:
+    - name: view
+      run:
+        echo $PATH
+
     - name: compile
       run:
         # make,g++ will run in container..
