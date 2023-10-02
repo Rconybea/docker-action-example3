@@ -28,4 +28,4 @@ jobs:
     - name: hello
       run:
         # since we did an in-source build
-        ${{github.workspace}/hello Roland
+        ${{github.workspace}}/hello Roland
