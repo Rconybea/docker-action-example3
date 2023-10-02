@@ -21,17 +21,21 @@ jobs:
 
     - name: view2
       run:
-        (pwd; ls)
+        pwd
 
-    - name: compile
+    - name: view3
       run:
-        # make,g++ will run in container..
-        make -C ${{github.workspace}}
+        ls -l
 
     - name: check compiler version
       run:
         # should be 12.2 or later
         g++ --version
+
+    - name: compile
+      run:
+        # make,g++ will run in container..
+        make
 
     - name: hello
       run:
