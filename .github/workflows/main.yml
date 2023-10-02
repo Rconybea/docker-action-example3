@@ -5,6 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/rconybea/docker-cpp-builder:v2
+      # advised to do this to match UID of github runner,
+      # so can checkout source code from inside container
+      options: --user root
+
       ## no credentials required, image is public
       # credentials:
       #   username: ${{ github.actor }}
