@@ -15,6 +15,9 @@ jobs:
       # options: <docker create options>
 
     steps:
+    - name: checkout source
+      uses: actions/checkout@v3
+
     - name: view
       run:
         echo $PATH
