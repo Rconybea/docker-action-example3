@@ -19,6 +19,10 @@ jobs:
       run:
         echo $PATH
 
+    - name: view2
+      run:
+        (pwd; ls)
+
     - name: compile
       run:
         # make,g++ will run in container..
