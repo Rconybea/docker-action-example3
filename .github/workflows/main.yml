@@ -21,12 +21,17 @@ jobs:
           # not using usual checkout action: bc complications from within container
           GIT_SSL_NO_VERIFY=true git clone https://${{env.GIT_USER}}:${{env.GIT_ACCESS_TOKEN}}@github.com/rconybea/docker-action-example3.git
 
+      - name: ls -l
+        run:
+          ls -l
+  
       - name: compile
         run:
           # make,g++ will run in container..
-          make
+          make -C docker-action-example3
 
       - name: hello
         # need to use container for libc etc.
         run:
-          ${{github.workspace}}/hello Roland
+          ./docker-action-example3/hello Roland
+          #${{github.workspace}}/hello Roland
