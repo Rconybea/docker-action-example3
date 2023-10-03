@@ -3,20 +3,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/rconybea/docker-cpp-builder:v2
-      # advised to do this to match UID of github runner,
-      # so can checkout source code from inside container
-      options: --user root
-
-      ## no credentials required, image is public
-      # credentials:
-      #   username: ${{ github.actor }}
-      #   password: ${{ secrets.github_token }}
-      #
-      # env: <map with environment variables to set>
-      # ports: [8080, 8081]
-      # options: <docker create options>
 
     steps:
     - name: checkout source
@@ -34,12 +20,8 @@ jobs:
       run:
         ls -l
 
-    - name: check compiler version
-      run:
-        # should be 12.2 or later
-        g++ --version
-
     - name: compile
+      uses: ghcr.io/rconybea/docker-cpp-builder:v2
       run:
         # make,g++ will run in container..
         make
