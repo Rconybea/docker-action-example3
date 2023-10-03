@@ -7,19 +7,10 @@ env:
 
 jobs:
   build_job:
+    name: compile hello world, using prepared docker container
     runs-on: ubuntu-latest
     container:
-      ## no credentials required, image is public
-      # credentials:
-      #   username: ${{ github.actor }}
-      #   password: ${{ secrets.github_token }}
-      #
-      # env: <map with environment variables to set>
-      # ports: [8080, 8081]
-      # options: <docker create options>
-      #
       image: ghcr.io/rconybea/docker-cpp-builder:v2
-
   steps:
     - name: checkout
       run:
@@ -27,7 +18,7 @@ jobs:
         git clone https://${{env.GIT_USER}}:${{env.GIT_ACCESS_TOKEN}}@github.com/rconybea/docker-action-example3.git
 
     - name: compile
-     run:
+      run:
         # make,g++ will run in container..
         args: make
 
