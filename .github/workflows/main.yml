@@ -20,7 +20,7 @@ jobs:
       - name: compile
         run:
           # make,g++ will run in container..
-          args: make
+          make
 
       - name: hello
         # need to use container for libc etc.
