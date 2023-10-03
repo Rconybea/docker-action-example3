@@ -1,21 +1,27 @@
 on: [push]
 
+env:
+  # personal accesss token with read access to public repos
+  GIT_USER: rconybea
+  GIT_ACCESS_TOKEN: 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
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: ghcr.io/rconybea/docker-cpp-builder:v2
 
-    steps:
-    - name: checkout source
-      uses: actions/checkout@v3
+steps:
+    - name: checkout
+      run:
+        # not using usual checkout action: bc complications from within container
+        git clone https://${{env.GIT_USER}}:${{env.GIT_ACCESS_TOKEN}}@github.com/rconybea/docker-action-example3.git
 
     - name: compile
-      uses: ghcr.io:/rconybea/docker-cpp-builder:v2
-      with:
+     run:
         # make,g++ will run in container..
         args: make
 
     - name: hello
-      uses: ghcr.io:/rconybea/docker-cpp-builder:v2
-      with:
-        # need to use container for libc etc.
+      # need to use container for libc etc.
+      run:
         ${{github.workspace}}/hello Roland
