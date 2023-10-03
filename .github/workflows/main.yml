@@ -9,13 +9,13 @@ jobs:
       uses: actions/checkout@v3
 
     - name: compile
-      uses: ghcr.io/rconybea/docker-cpp-builder:v2
+      uses: ghcr.io:/rconybea/docker-cpp-builder:v2
       with:
         # make,g++ will run in container..
         args: make
 
     - name: hello
-      uses: ghcr.io/rconybea/docker-cpp-builder:v2
+      uses: ghcr.io:/rconybea/docker-cpp-builder:v2
       with:
         # need to use container for libc etc.
         ${{github.workspace}}/hello Roland
