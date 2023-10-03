@@ -12,14 +12,14 @@ jobs:
     container:
       image: ghcr.io/rconybea/docker-cpp-builder:v3
     steps:
-      - name: ls /etc
+      - name: ls /etc/ssl
         run:
-          ls /etc
+          ls /etc/ssl
 
       - name: checkout
         run:
           # not using usual checkout action: bc complications from within container
-          git clone https://${{env.GIT_USER}}:${{env.GIT_ACCESS_TOKEN}}@github.com/rconybea/docker-action-example3.git
+          GIT_SSL_NO_VERIFY=true git clone https://${{env.GIT_USER}}:${{env.GIT_ACCESS_TOKEN}}@github.com/rconybea/docker-action-example3.git
 
       - name: compile
         run:
