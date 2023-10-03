@@ -10,13 +10,16 @@ jobs:
     name: compile hello world, using prepared docker container
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/rconybea/docker-cpp-builder:v2
+      image: ghcr.io/rconybea/docker-cpp-builder:v3
     steps:
+      - name: ls /etc
+        run:
+          ls /etc
+
       - name: checkout
         run:
           # not using usual checkout action: bc complications from within container
           git clone https://${{env.GIT_USER}}:${{env.GIT_ACCESS_TOKEN}}@github.com/rconybea/docker-action-example3.git
-
 
       - name: compile
         run:
