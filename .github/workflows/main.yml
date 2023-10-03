@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/rconybea/docker-cpp-builder:v2
-  steps:
-    - name: checkout
-      run:
-        # not using usual checkout action: bc complications from within container
-        git clone https://${{env.GIT_USER}}:${{env.GIT_ACCESS_TOKEN}}@github.com/rconybea/docker-action-example3.git
+    steps:
+      - name: checkout
+        run:
+          # not using usual checkout action: bc complications from within container
+          git clone https://${{env.GIT_USER}}:${{env.GIT_ACCESS_TOKEN}}@github.com/rconybea/docker-action-example3.git
 
-    - name: compile
-      run:
-        # make,g++ will run in container..
-        args: make
+      - name: compile
+        run:
+          # make,g++ will run in container..
+          args: make
 
-    - name: hello
-      # need to use container for libc etc.
-      run:
-        ${{github.workspace}}/hello Roland
+      - name: hello
+        # need to use container for libc etc.
+        run:
+          ${{github.workspace}}/hello Roland
